@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+        {% load static %}
+
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#3b82f6">
     <title>Food App</title>
     <style>
         body {
@@ -183,9 +187,18 @@
     {% endfor %}
 </div>
 <script>
+    
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/serviceworker.js')
+    .then(function() {
+        console.log("Service Worker Registered");
+    });
+}
+
     window.onload = function() {
         document.getElementById("loader").style.display = "none";
     }
+    
 </script>
 </body>
 </html>
