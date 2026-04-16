@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Success</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg,#6676a4, #6676a4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: pop 0.5s ease;
+        }
+
+        h2 {
+            color: #6676a4;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: #6676a4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* ANIMATION */
+        @keyframes pop {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="icon">🎉</div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Your food is on the way 🚚</p>
+
+    <a href="/">
+        <button class="btn">🏠 Back to Home</button>
+    </a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Orders</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #f8f8f8;
+        }
+
+        /* HEADER */
+        .header {
+            background:#6676a4;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .btn {
+            background: white;
+            color: #6676a4;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* ORDER CARD */
+        .card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .order-id {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .date {
+            color: gray;
+            font-size: 14px;
+        }
+
+        /* EMPTY */
+        .empty {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🔥 HEADER -->
+<div class="header">
+    <h2>📦 My Orders</h2>
+    <a href="/"><button class="btn">⬅ Home</button></a>
+</div>
+
+<div class="container">
+
+{% if orders %}
+    {% for order in orders %}
+    <div class="card">
+        <div class="order-id">Order #{{ forloop.counter }}</div>
+        <div class="price">₹{{ order.total }}</div>
+        <div class="date">{{ order.created_at }}</div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="empty">
+        No orders yet 😢<br><br>
+        <a href="/"><button class="btn">Start Ordering 🍔</button></a>
+    </div>
+{% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #f8f8f8;
+            
+        }
+
+        /* HEADER */
+        .header {
+            background: #6676a4;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header .btn {
+            background: white;
+            color: #6676a4;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* CATEGORY */
+        .category {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .category a {
+            text-decoration: none;
+        }
+
+        .category button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #eee;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category button:hover {
+            background: #6676a4;
+            color: white;
+        }
+
+        /* FOOD GRID */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* CARD */
+    .card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .btn:hover {
+         transform: scale(1.05);
+         transition: 0.2s;
+        }
+
+        .btn {
+            background: #6676a4;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+        #loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    font-size: 24px;
+}
+    </style>
+</head>
+
+<body>
+<!-- 🔥 LOADER -->
+<div id="loader">
+    <h2>Loading...</h2>
+</div>
+<!-- 🔥 HEADER -->
+<div class="header">
+    
+    <p>👤 {{ request.user.username }}</p>
+    <h1>BiteX</h1>
+
+    <div>
+        <a href="/cart/"><button class="btn">🛒 Cart</button></a>
+        <a href="/logout/"><button class="btn">Logout</button></a>
+    </div>
+</div>
+<div style="text-align:center; margin:20px;">
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search food..." style="padding:8px; width:200px;">
+        <button class="btn">Search</button>
+    </form>
+</div>
+
+<!-- 🔥 CATEGORY -->
+<div class="category">
+    <a href="/?category=chicken"><button>🍗 Chicken</button></a>
+    <a href="/?category=juice"><button>🧃 Juice</button></a>
+    <a href="/?category=biryani"><button>🍛 Biryani</button></a>
+    <a href="/"><button>All</button></a>
+</div>
+
+<!-- 🔥 FOOD ITEMS -->
+<div class="container">
+    {% for food in foods %}
+    <div class="card">
+
+        {% if food.image %}
+        <img src="{{ food.image.url }}">
+        {% endif %}
+
+        <div class="card-body">
+            <h3>{{ food.name }}</h3>
+            <p class="price">₹{{ food.price }}</p>
+
+            <a href="/add/{{ food.id }}/">
+                <button class="btn">Add to Cart</button>
+            </a>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+<script>
+    window.onload = function() {
+        document.getElementById("loader").style.display = "none";
+    }
+</script>
+</body>
+</html>

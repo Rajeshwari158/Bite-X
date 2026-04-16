@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="3;url=/login/">
+
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #6676a4, #6676a4);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* LOGO TEXT */
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* SUB TEXT */
+        .sub {
+            margin-top: 10px;
+            font-size: 18px;
+            opacity: 0.9;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* LOADING DOTS */
+        .dots {
+            margin-top: 20px;
+            font-size: 30px;
+            letter-spacing: 5px;
+        }
+
+        .dots span {
+            animation: blink 1.5s infinite;
+        }
+
+        .dots span:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dots span:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="logo">🍔 Food Delivery App</div>
+<div class="sub">Your food is on the way 🚀</div>
+
+<div class="dots">
+    <span>.</span>
+    <span>.</span>
+    <span>.</span>
+</div>
+
+</body>
+</html>

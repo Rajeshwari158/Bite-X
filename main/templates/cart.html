@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #f8f8f8;
+        }
+
+        /* HEADER */
+        .header {
+            background: #6676a4;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .header a {
+            text-decoration: none;
+        }
+
+        .btn {
+            background: white;
+            color: #6676a4;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* CONTAINER */
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .food-name {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: rgb(0, 123, 255);
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* TOTAL */
+        .total-box {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .total-box h3 {
+            margin: 10px 0;
+        }
+
+        /* CHECKOUT BUTTON */
+        .checkout-btn {
+            background: #6676a4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* EMPTY CART */
+        .empty {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🔥 HEADER -->
+<div class="header">
+    <h2>🛒 Your Cart</h2>
+    <a href="/"><button class="btn">⬅ Back</button></a>
+</div>
+
+<div class="container">
+
+{% if foods %}
+    <!-- ITEMS -->
+    {% for food in foods %}
+    <div class="card">
+        <div>
+            <div class="food-name">{{ food.name }}</div>
+            <div class="price">₹{{ food.price }}</div>
+        </div>
+
+        <a href="/remove/{{ food.id }}/">
+            <button class="remove-btn">❌</button>
+        </a>
+    </div>
+    {% endfor %}
+
+    <!-- TOTAL -->
+    <div class="total-box">
+        <h3>Total: ₹{{ total }}</h3>
+
+        <a href="/checkout/">
+            <button class="checkout-btn">Proceed to Checkout 💳</button>
+        </a>
+    </div>
+
+{% else %}
+    <!-- EMPTY CART -->
+    <div class="empty">
+        🛒 Your cart is empty <br><br>
+        <a href="/"><button class="btn">Browse Food</button></a>
+    </div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
